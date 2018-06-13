@@ -1,0 +1,7 @@
+<div class="activity-list" *ngIf="activities">
+  <ul>
+    <li *ngFor="let activity of activities">
+      <app-activity-item [activity]="activity"></app-activity-item>
+    </li>
+  </ul>
+</div>

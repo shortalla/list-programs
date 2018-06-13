@@ -1,0 +1,81 @@
+
+/**
+ * Media queries for our breakpoints
+ *
+ * The breakpoints are named
+ * - xs = extra-small   (600px)
+ * - sm = small         (960px)
+ * - md = medium        (1280px)
+ * - lg = large         (1920px)
+ *
+ * The breakpoint can be given by
+ * - Two names, just matching that particular interval: xs-sm, sm-md, md-lg
+ * - Strict greater than name: gt-xs, gt-sm, gt-md, (no gt-lg)
+ * - Greater or equal than name: (no ge-xs), ge-sm, ge-md, ge-lg
+ * - Strict less than name: (no lt-xs), lt-sm, lt-md, lt-lg
+ * - Less or equal than name: le-xs, le-sm, le-md, (no le-lg)
+ */
+@mixin media-query($media-name) {
+
+    /* Specific intervals */
+    @if ($media-name == xs-sm) {
+        @media (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-sm - 1) {
+            @content;
+        }
+    }
+    @else if ($media-name == sm-md) {
+        @media (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-md - 1) {
+            @content;
+        }
+    }
+    @else if ($media-name == md-lg) {
+        @media (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) {
+            @content;
+        }
+    }
+    
+    /* Less than and less or equal  */
+    @else if ($media-name == lt-sm) or ($media-name == le-xs) {
+        @media (max-width: $layout-breakpoint-xs - 1) {
+            @content;
+        }
+    }
+    @else if ($media-name == lt-md) or ($media-name == le-sm) {
+        @media (max-width: $layout-breakpoint-sm - 1) {
+            @content;
+        }
+    }
+    @else if ($media-name == lt-lg) or ($media-name == le-md) {
+        @media (max-width: $layout-breakpoint-md - 1) {
+            @content;
+        }
+    }
+
+    /* Greater equal and greater than */
+    @else if ($media-name == ge-xs) {
+        @media (min-width: $layout-breakpoint-xs) {
+            @content;
+        }
+    }
+    @else if ($media-name == ge-sm) or ($media-name == gt-xs) {
+        @media (min-width: $layout-breakpoint-sm) {
+            @content;
+        }
+    }
+    @else if ($media-name == ge-md) or ($media-name == gt-sm) {
+        @media (min-width: $layout-breakpoint-md) {
+            @content;
+        }
+    }
+    @else if ($media-name == ge-lg) or ($media-name == gt-md) {
+        @media (min-width: $layout-breakpoint-lg) {
+            @content;
+        }
+    }
+
+    /* Unreachable */
+    @else {
+        @error "Unknown media selector name: `#{media-name}`.";
+    }
+    
+}

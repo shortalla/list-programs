@@ -1,0 +1,18 @@
+<form class="add-activity-form" [formGroup]="activityForm" (submit)="addActivity()">
+  <label>Name:
+    <input type="text" name="name" formControlName="name" />
+  </label>
+  <div *ngIf="!activityForm.controls['name'].valid && activityForm.controls['name'].touched">
+    Activities require a name.
+  </div>
+
+  <label>Start date:
+    <input type="date" name="startDate" formControlName="startDate"/>
+  </label>
+
+  <label>End date:
+    <input type="date" name="endDate" formControlName="endDate" />
+  </label>
+
+  <input type="submit" value="Create activity" [disabled]="!activityForm.valid">
+</form>

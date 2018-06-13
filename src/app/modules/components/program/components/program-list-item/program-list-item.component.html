@@ -1,0 +1,6 @@
+<div *ngIf="program" class="program-list-item">
+    <div class="program-list-item--title">{{program.name}}</div>
+    <div class="program-list-item--date">{{program.startDate}} to {{program.endDate}}</div>
+    <app-activity-list [programId]="program.id"></app-activity-list>
+    <app-activity-add [programId]="program.id"></app-activity-add>
+</div>

@@ -1,0 +1,7 @@
+<div class="program-list">
+  <ul>
+    <li *ngFor="let program of programs | async">
+      <app-program-list-item [program]="program"></app-program-list-item>
+    </li>
+  </ul>
+</div>
