@@ -1,6 +1,6 @@
-<div class="program-list">
-  <ul>
-    <li *ngFor="let program of programs | async">
+<div *ngIf="programs() && programs().length > 0" class="program-list">
+  <ul class="program-list__unordered-list" fxLayout="row">
+    <li class="program-list__list-item" *ngFor="let program of programs()">
       <app-program-list-item [program]="program"></app-program-list-item>
     </li>
   </ul>

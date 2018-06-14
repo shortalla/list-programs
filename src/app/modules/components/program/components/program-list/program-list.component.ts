@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgramService } from '../../program.service';
+import { ProgramModel } from '../../program.model';
 
 @Component({
   selector: 'app-program-list',
@@ -8,11 +9,12 @@ import { ProgramService } from '../../program.service';
 })
 
 export class ProgramListComponent implements OnInit {
-  private programs: any;
 
   constructor(private programService: ProgramService) { }
 
-  ngOnInit() {
-    this.programs = this.programService.list();
+  ngOnInit() { }
+
+  public programs(): ProgramModel[] {
+    return this.programService.list;
   }
 }

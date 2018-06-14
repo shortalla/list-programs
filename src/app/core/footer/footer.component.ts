@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-footer',
@@ -11,7 +12,8 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.copyright = 'Andrew Shortall. All rights reserved.';
+    const year = moment().year();
+    this.copyright = `${year} Andrew Shortall. All rights reserved.`;
   }
 
 }

@@ -1,18 +1,31 @@
 <form class="add-activity-form" [formGroup]="activityForm" (submit)="addActivity()">
-  <label>Name:
-    <input type="text" name="name" formControlName="name" />
-  </label>
-  <div *ngIf="!activityForm.controls['name'].valid && activityForm.controls['name'].touched">
-    Activities require a name.
+  
+  <div fxLayout="row" class="add-activity-form__input-container">
+    <label class="add-activity-form__input-label" for="name">Name:</label>
+    <input class="add-activity-form__input" type="text" name="name" formControlName="name" />
+  </div>
+  <div class="add-activity-form__message-container add-activity-form__message-container--error"
+    [ngClass]="errorClass(activityForm.controls)">
+    <div class="add-activity-form__message">Activity requires a name.</div>
   </div>
 
-  <label>Start date:
-    <input type="date" name="startDate" formControlName="startDate"/>
-  </label>
+  <div fxLayout="row" class="add-activity-form__input-container">
+    <label class="add-activity-form__input-label" for="startDate">Start date:</label>
+    <input class="add-activity-form__input" type="date" name="startDate" formControlName="startDate"/>
+  </div>
 
-  <label>End date:
-    <input type="date" name="endDate" formControlName="endDate" />
-  </label>
+  <div fxLayout="row" class="add-activity-form__input-container">
+    <label class="add-activity-form__input-label" for="endDate">End date:</label>
+    <input class="add-activity-form__input" type="date" name="endDate" formControlName="endDate" />
+  </div>
 
-  <input type="submit" value="Create activity" [disabled]="!activityForm.valid">
+  <div class="add-activity-form__submit">
+    <input type="submit" value="Create activity" [disabled]="!activityForm.valid">
+  </div>
+
 </form>
+
+<div class="add-activity-form__message-container add-activity-form__message-container--success"
+  [ngClass]="successClass()">
+  <div class="add-activity-form__message">{{message}}</div>
+</div>

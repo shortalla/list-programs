@@ -1,0 +1,13 @@
+@import '~assets/scss/styles.scss';
+
+.list-page {
+    background-color: $theme-grey-light;
+    padding: 2rem;
+}
+
+.list-page__header {
+    padding: 1rem;
+    background-color: $theme-background;
+    box-shadow: inset 1px 1px 5px $theme-grey-light;
+    border: 1px solid $theme-grey;
+}

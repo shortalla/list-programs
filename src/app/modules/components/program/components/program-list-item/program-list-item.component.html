@@ -1,6 +1,12 @@
 <div *ngIf="program" class="program-list-item">
-    <div class="program-list-item--title">{{program.name}}</div>
-    <div class="program-list-item--date">{{program.startDate}} to {{program.endDate}}</div>
-    <app-activity-list [programId]="program.id"></app-activity-list>
-    <app-activity-add [programId]="program.id"></app-activity-add>
+    <div class="program-list-item__title">{{program.name}}</div>
+    <div class="program-list-item__activities">
+        <app-activity-list [programId]="program.id"></app-activity-list>
+        <mat-expansion-panel class="program-list-item__panel mat-elevation-z">
+            <mat-expansion-panel-header class="program-list-item__panel-header">
+                <mat-panel-title>Add activity</mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-activity-add [programId]="program.id"></app-activity-add>
+        </mat-expansion-panel>
+    </div>
 </div>

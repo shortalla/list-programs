@@ -1,0 +1,10 @@
+@import '~assets/scss/styles.scss';
+
+.activity-list-item {
+    padding: 1rem;
+}
+
+.activity-list-item__date {
+    font-size: $font-size-xs;
+    color: $theme-grey;
+}

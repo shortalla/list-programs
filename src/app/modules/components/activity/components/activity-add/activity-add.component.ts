@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivityService } from '../../activity.service';
-import { ActivityModel } from '../../activity.model';
+import { Store } from '@ngrx/store';
+import * as actions from '../../activity.actions';
+import * as fromAction from '../../activity.reducer';
 
 @Component({
   selector: 'app-activity-add',
@@ -12,12 +14,11 @@ import { ActivityModel } from '../../activity.model';
 export class ActivityAddComponent implements OnInit {
   @Input() private programId: number;
   private activityForm: FormGroup;
-  private name: string = '';
-  private startDate: Date = null;
-  private endDate: Date = null;
+  private message: string;
 
   constructor(private formBuilder: FormBuilder,
-              private activityService: ActivityService) {}
+              private activityService: ActivityService,
+              private store: Store<fromAction.State>) {}
 
   ngOnInit() {
     this.initForm();
@@ -39,16 +40,37 @@ export class ActivityAddComponent implements OnInit {
    */
   addActivity() {
     const form = this.activityForm.value;
-    this.name = form.name;
-    this.startDate = form.startDate;
-    this.endDate = form.endDate;
-    this.activityService.add(
-      this.programId,
-      new ActivityModel(
-        this.name,
-        this.startDate,
-        this.endDate
-      )
+    const activity = {
+      id: null,
+      name: form.name,
+      startDate: form.startDate,
+      endDate: form.endDate,
+    };
+    this.store.dispatch(new actions.Create(activity));
+
+    this.activityService.add({
+      programId: this.programId,
+      name: form.name,
+      startDate: form.startDate,
+      endDate: form.endDate
+    }).then(
+      success => {
+        this.message = `Success! ${form.name} was created`;
+        this.initForm();
+        setTimeout(() => this.message = undefined, 1000);
+      }
     );
+  }
+
+  errorClass(controls) {
+    return {
+      'add-activity-form__message-shown' : !controls['name'].valid && controls['name'].touched
+    }
+  }
+
+  successClass() {
+    return {
+      'add-activity-form__message-shown' : Boolean(this.message)
+    }
   }
 }

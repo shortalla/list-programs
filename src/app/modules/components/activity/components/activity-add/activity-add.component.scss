@@ -1,1 +1,44 @@
 @import '~assets/scss/styles.scss';
+
+.add-activity-form__input-container {
+    padding: 0.25em 0;
+}
+
+.add-activity-form__input-label {
+    font-weight: $font-weight-lightest;
+    min-width: 10rem;
+}
+
+.add-activity-form__input {
+    width: 15rem;
+    min-width: 5rem;
+}
+
+.add-activity-form__message-container {
+    border-radius: 3px;
+    transition: all 1s linear;
+    height: auto;
+    max-height: 5em;
+    overflow: auto;
+
+    &:not(.add-activity-form__message-shown) {
+        transition: all 1s linear;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+}
+
+.add-activity-form__message {
+    padding: 0.5rem;
+    font-size: $font-size-xxs;
+}
+
+.add-activity-form__message-container--error {
+    background-color: $theme-warn;
+    color: $theme-background;
+}
+
+.add-activity-form__message-container--success {
+    color: $theme-primary;
+}

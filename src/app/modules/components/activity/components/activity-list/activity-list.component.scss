@@ -1,0 +1,12 @@
+@import '~assets/scss/styles.scss';
+
+.activity-list {
+    margin: 0.5rem;
+    border: 1px solid $theme-grey;
+}
+
+.activity-list__list-item {
+    &:not(:last-child) {
+        border-bottom: 1px solid $theme-grey;
+    }
+}

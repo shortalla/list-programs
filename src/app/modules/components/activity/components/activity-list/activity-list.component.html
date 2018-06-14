@@ -1,7 +1,7 @@
-<div class="activity-list" *ngIf="activities">
-  <ul>
-    <li *ngFor="let activity of activities">
-      <app-activity-item [activity]="activity"></app-activity-item>
+<div *ngIf="activities && activities.length > 0" class="activity-list">
+  <ul class="activitiy-list__unorderered-list">
+    <li class="activity-list__list-item" *ngFor="let activity of activities">
+      <app-activity-list-item [activity]="activity"></app-activity-list-item>
     </li>
   </ul>
 </div>

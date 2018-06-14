@@ -5,6 +5,17 @@ import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment';
 
+
+/**
+ * Options for activity creation
+ */
+export interface ActivityOptions {
+  programId: number;
+  name: string;
+  startDate: Date;
+  endDate: Date;
+}
+
 /**
  * Service for interactions with API endpoints
  */
@@ -50,12 +61,12 @@ export class ApiService {
    * 
    * @param activity The activity model
    */
-  public addActivity(programId: number, activity: any) {
+  public addActivity(activityOptions: ActivityOptions) {
     const body = {
-      workflowlevel1: `${this._apiUrl}workflowlevel1/${programId}/`,
-      name: activity.name,
-      start_date: moment(activity.startDate).toJSON(),
-      end_date: moment(activity.endDate).toJSON()
+      workflowlevel1: `${this._apiUrl}workflowlevel1/${activityOptions.programId}/`,
+      name: activityOptions.name,
+      expected_start_date: moment(activityOptions.startDate).toJSON(),
+      expected_end_date: moment(activityOptions.endDate).toJSON()
     };
     return this.httpClient.post(
       `${this._apiUrl}workflowlevel2/`,

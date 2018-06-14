@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import { ListPageModule } from './modules/pages/list-page/list-page.module';
-import { DetailsPageModule } from './modules/pages/details-page/details-page.module';
 
 import { appRouting } from './app.routes';
 
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     CoreModule,
     ListPageModule,
-    DetailsPageModule,
+    StoreModule.forRoot({}),
     appRouting
   ],
   providers: [],

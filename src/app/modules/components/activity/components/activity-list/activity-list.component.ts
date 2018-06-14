@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivityService } from '../../activity.service';
+import { ActivityModel } from '../../activity.model';
 
 @Component({
   selector: 'app-activity-list',
@@ -7,14 +8,17 @@ import { ActivityService } from '../../activity.service';
   styleUrls: ['./activity-list.component.scss']
 })
 export class ActivityListComponent implements OnInit {
-  @Input() programId: any;
-  private activities;
+  @Input() private programId: number;
+  private activities: ActivityModel[];
 
-  constructor(private activityService: ActivityService) { }
+  constructor(private activityService: ActivityService) {
+  }
 
   ngOnInit() {
     this.activityService.listForProgram(this.programId).then(
-      result => this.activities = result
+      result => this.activities = result.map(
+        data => ActivityModel.fromJson(data)
+      )
     );
   }
   

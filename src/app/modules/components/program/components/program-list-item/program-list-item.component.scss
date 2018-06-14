@@ -1,13 +1,25 @@
 @import '~assets/scss/styles.scss';
 
 .program-list-item {
-    padding: 0.25rem;
-    margin: 0.25rem;
-    background-color: $theme-accent-light;
-    border-radius: 3px;
-    border: 2px solid $theme-accent;
 } 
 
 .program-list-item__title {
-    font-weight: $font-weight-bold;
+    padding: 1rem;
+    font-size: $font-size-lg;
+    color: $theme-background;
+    background-color: $theme-primary;
+}
+
+.program-list-item__activities {
+    margin: 0.5rem;
+}
+
+.program-list-item__panel {
+    margin: 0.5rem;
+    border: 1px solid $theme-grey;
+    box-shadow: none;
+}
+
+.program-list-item__panel-header {
+    padding: 0.5rem 1rem;
 }

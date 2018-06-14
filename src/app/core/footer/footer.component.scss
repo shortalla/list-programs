@@ -1,8 +1,8 @@
 @import '~assets/scss/styles.scss';
 
 .app-footer {
-    background-color: #ddd;
-    border-top: 1px solid #000;
+    background-color: $theme-background;
+    border-top: 1px solid $theme-grey-dark;
 }
 
 .app-footer__copyright {

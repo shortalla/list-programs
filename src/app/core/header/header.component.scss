@@ -1,13 +1,13 @@
 @import '~assets/scss/styles.scss';
 
 .app-header {
-    background-color: #ddd;
-    border-bottom: 1px solid #000;
+    background-color: $theme-primary;
+    color: $theme-background;
+    border-bottom: 1px solid $theme-primary-dark;
 }
 
 .app-header__title {
     margin: 0;
-    padding: 0.5rem;
-    text-transform: uppercase;
+    padding: 1.25rem;
     font-size: 1.25rem;
 }

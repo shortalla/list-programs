@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../core/api/api.service';
 import 'rxjs/add/operator/map';
+import { ProgramModel } from './program.model';
+import { Subscription } from 'rxjs';
 
 /**
  * Service for handling events related to programs
  */
 @Injectable()
 export class ProgramService {
-  
-  constructor(private apiService: ApiService) {}
-
   /**
    * The complete list of programs
    */
-  public list() {
-    return this.apiService.listPrograms();
+  private _list: ProgramModel[];
+  
+  get list(): ProgramModel[] {
+    return this._list;
+  }
+
+  constructor(private apiService: ApiService) {
+    this.apiService.listPrograms().subscribe(
+      data => this._list = data.map(result => ProgramModel.fromJson(result))
+    );
   }
 }

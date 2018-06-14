@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../../core/api/api.service';
+import { ApiService, ActivityOptions } from '../../../core/api/api.service';
 import { ActivityModel } from './activity.model';
 
 /**
@@ -32,7 +32,7 @@ export class ActivityService {
    * 
    * @param programId The identifier of the program
    */
-  listForProgram(programId: number): Promise<any> {
+  public listForProgram(programId: number): Promise<any> {
     return this.apiService.listProgramActivities(programId).toPromise();
   }
   
@@ -42,8 +42,8 @@ export class ActivityService {
    * @param programId The identifier of the program
    * @param activity The activity model
    */
-  add(programId: number, activity: ActivityModel) {
-    return this.apiService.addActivity(programId, activity);
+  public add(activityOptions: ActivityOptions) {
+    return this.apiService.addActivity(activityOptions);
   }
 
   /**
@@ -51,7 +51,7 @@ export class ActivityService {
    * 
    * @param activityId The identifier of the activity
    */
-  delete(activityId: number) {
+  public delete(activityId: number) {
     return this.apiService.deleteActivity(activityId);
   }
 }

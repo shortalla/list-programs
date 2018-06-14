@@ -3,16 +3,18 @@ import { ActivityService } from '../../activity.service';
 import { ActivityModel } from '../../activity.model';
 
 @Component({
-  selector: 'app-activity-item',
-  templateUrl: './activity-item.component.html',
-  styleUrls: ['./activity-item.component.scss']
+  selector: 'app-activity-list-item',
+  templateUrl: './activity-list-item.component.html',
+  styleUrls: ['./activity-list-item.component.scss']
 })
-export class ActivityItemComponent implements OnInit {
-  @Input() private activity;
+export class ActivityListItemComponent implements OnInit {
+  @Input() private activity: ActivityModel;
 
   constructor(private activityService: ActivityService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.activity);
+  }
 
   delete() {
     this.activityService.delete(this.activity.id);

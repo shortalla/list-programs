@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProgramModel } from '../../program.model';
 
 @Component({
   selector: 'app-program-list-item',
@@ -7,11 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class ProgramListItemComponent implements OnInit {
-  @Input() private program;
+  @Input() private program: ProgramModel;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

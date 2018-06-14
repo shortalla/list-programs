@@ -1,0 +1,21 @@
+<div class="activity-list-item" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxFlex="50" class="activity-list-item__title">{{activity.name}}</div>
+  <div fxFlex>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="activity-list-item__date">
+        <span *ngIf="activity.isTimed()">
+          {{activity.startDate | date:'shortDate'}} &ndash;
+          {{activity.endDate | date:'shortDate'}}
+        </span>
+        <span *ngIf="!activity.isTimed()">
+          No time set
+        </span>
+      </div>
+      <div class="activity-list-item__delete">
+        <button aria-label="Delete" mat-icon-button (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
