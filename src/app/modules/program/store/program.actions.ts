@@ -1,17 +1,28 @@
 import { Action } from '@ngrx/store';
-import { ProgramState } from './program.reducer';
 
 
-export const LIST = '[Actions] List';
+export const LOAD_LIST = '[Programs] Load list';
+export const LOAD_LIST_SUCCESS = '[Programs] Load list success';
+export const LOAD_LIST_FAIL = '[Programs] Load list fail';
 
 
-export class List implements Action {
-	public readonly type = LIST;
-	public readonly payload: ProgramState;
+export class LoadList implements Action {
+	public readonly type = LOAD_LIST;
+	public readonly payload: any;
 
-	constructor(public program: ProgramState) {
-		this.payload = program;
-	}
+	constructor() {}
 }
 
-export type ProgramAction = List;
+export class LoadListSuccess implements Action {
+	public readonly type = LOAD_LIST_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+
+export class LoadListFail implements Action {
+	public readonly type =  LOAD_LIST_FAIL;
+
+	constructor(public payload: any) {}
+}
+
+export type ProgramAction = LoadList | LoadListSuccess | LoadListFail;
