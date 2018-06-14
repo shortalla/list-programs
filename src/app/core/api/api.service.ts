@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment';
+import { ActivityModel } from '../../modules/activity/models/activity.model';
 
 
 /**
@@ -59,14 +60,15 @@ export class ApiService {
   /**
    * Create a new activity for a particular program
    * 
+   * @param programId The identifier of the program
    * @param activity The activity model
    */
-  public addActivity(activityOptions: ActivityOptions) {
+  public addActivity(programId: number, activity: ActivityModel) {
     const body = {
-      workflowlevel1: `${this._apiUrl}workflowlevel1/${activityOptions.programId}/`,
-      name: activityOptions.name,
-      expected_start_date: moment(activityOptions.startDate).toJSON(),
-      expected_end_date: moment(activityOptions.endDate).toJSON()
+      workflowlevel1: `${this._apiUrl}workflowlevel1/${programId}/`,
+      name: activity.name,
+      expected_start_date: moment(activity.startDate).toJSON(),
+      expected_end_date: moment(activity.endDate).toJSON()
     };
     return this.httpClient.post(
       `${this._apiUrl}workflowlevel2/`,

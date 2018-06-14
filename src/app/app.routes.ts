@@ -1,6 +1,6 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListPageComponent } from './modules/pages/list-page/components/list-page.component';
+import { ListPageComponent } from './pages/list-page/components/list-page.component';
 
 
 export const appRoutes: Routes = [

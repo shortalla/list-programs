@@ -8,12 +8,13 @@ import * as moment from 'moment';
 })
 export class FooterComponent implements OnInit {
   copyright: string;
+  year: number;
 
   constructor() { }
 
   ngOnInit() {
-    const year = moment().year();
-    this.copyright = `${year} Andrew Shortall. All rights reserved.`;
+    this.year = moment().year();
+    this.copyright = `${this.year} Andrew Shortall. All rights reserved.`;
   }
 
 }
