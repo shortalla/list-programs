@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramService } from '../../services/program.service';
 import { ProgramModel } from '../../models/program.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -16,8 +15,7 @@ import * as actions from '../../store/program.actions';
 export class ProgramListComponent implements OnInit {
   private programs$: Observable<ProgramModel[]>;
 
-  constructor(private programService: ProgramService,
-              private store: Store<ProgramsState>) { }
+  constructor(private store: Store<ProgramsState>) { }
 
   ngOnInit() {
     this.programs$ = this.store.select(getProgramList);

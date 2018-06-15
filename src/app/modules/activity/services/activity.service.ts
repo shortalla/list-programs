@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService, ActivityOptions } from '../../../core/api/api.service';
 import { ActivityModel } from '../models/activity.model';
+import { ActivityState } from '../store/activity.reducer';
 
 /**
  * Service for handling events related to activities
@@ -39,11 +40,17 @@ export class ActivityService {
   /**
    * Add a new activity to a specific program.
    * 
-   * @param programId The identifier of the program
-   * @param activity The activity model
+   * @param activity The activity state
    */
-  public add(programId: number, activity: ActivityModel) {
-    return this.apiService.addActivity(programId, activity);
+  public add(activity: ActivityState) {
+    return this.apiService.addActivity(
+      activity.programId,
+      new ActivityModel(
+        activity.name,
+        activity.startDate,
+        activity.endDate
+      )
+    );
   }
 
   /**

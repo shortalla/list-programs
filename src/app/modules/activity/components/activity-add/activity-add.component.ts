@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivityService } from '../../services/activity.service';
 import { Store } from '@ngrx/store';
 import * as actions from '../../store/activity.actions';
-import * as fromAction from '../../store/activity.reducer';
+import { State } from '../../store/activity.reducer';
 import { ActivityModel } from '../../models/activity.model';
 
 @Component({
@@ -19,7 +19,7 @@ export class ActivityAddComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private activityService: ActivityService,
-              private store: Store<fromAction.State>) {}
+              private store: Store<State>) {}
 
   ngOnInit() {
     this.initForm();
@@ -46,21 +46,28 @@ export class ActivityAddComponent implements OnInit {
       form.startDate,
       form.endDate
     );
-    this.store.dispatch(new actions.Create({id: activity.id, activity: activity}));
 
-    this.activityService.add(
-      this.programId,
-      activity
-    ).then(
-      success => {
-        this.message = `Success! ${form.name} was created`;
-        this.initForm();
-        setTimeout(() => this.message = undefined, 1000);
-      },
-      error => {
-        this.message = `Error! ${form.name} was not created`;
-      }
-    );
+    // Should dispatch create event here
+    this.store.dispatch(new actions.Create({
+      programId: this.programId,
+      name: form.name,
+      startDate: form.startDate,
+      endDate: form.endDate
+    }));
+
+    // this.activityService.add(
+    //   this.programId,
+    //   activity
+    // ).then(
+    //   success => {
+    //     this.message = `Success! ${form.name} was created`;
+    //     this.initForm();
+    //     setTimeout(() => this.message = undefined, 1000);
+    //   },
+    //   error => {
+    //     this.message = `Error! ${form.name} was not created`;
+    //   }
+    // );
   }
 
   errorClass(controls) {

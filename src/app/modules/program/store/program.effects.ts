@@ -5,6 +5,8 @@ import * as actions from './program.actions';
 import { ApiService } from '../../../core/api/api.service';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { ProgramModel } from '../models/program.model';
+import { Observable } from 'rxjs/Observable';
+import { Action } from '@ngrx/store';
 
 
 @Injectable()
@@ -14,12 +16,11 @@ export class ProgramEffects {
 							private apiService: ApiService) {}
 
 	@Effect()
-	loadList$ = this.actions$.ofType(actions.LOAD_LIST).pipe(
+	loadList$: Observable<Action> = this.actions$.ofType(actions.LOAD_LIST).pipe(
     switchMap(() => {
       return this.apiService.listPrograms().pipe().map(data => {
-        const ids = data.map(program => program.id);
         const programs = data.map(program => ProgramModel.fromJson(program));
-        return new actions.LoadListSuccess({ids: ids, programs: programs});
+        return new actions.LoadListSuccess({programs});
       });
     })
   );

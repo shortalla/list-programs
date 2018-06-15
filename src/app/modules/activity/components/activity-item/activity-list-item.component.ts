@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivityService } from '../../services/activity.service';
 import { ActivityModel } from '../../models/activity.model';
+import { Store } from '@ngrx/store';
+import { State } from '../../store/activity.reducer';
+import * as actions from '../../store/activity.actions';
 
 @Component({
   selector: 'app-activity-list-item',
@@ -10,11 +13,17 @@ import { ActivityModel } from '../../models/activity.model';
 export class ActivityListItemComponent implements OnInit {
   @Input() private activity: ActivityModel;
 
-  constructor(private activityService: ActivityService) { }
+  constructor(private activityService: ActivityService,
+              private store: Store<State>) { }
 
   ngOnInit() {}
 
   delete() {
+    // /Should dispatch delete event here
+
+    // this.store.dispatch(new actions.Delete({
+    //   id: this.activity.id
+    // }));
     this.activityService.delete(this.activity.id);
   }
 }

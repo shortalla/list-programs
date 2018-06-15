@@ -5,24 +5,30 @@ import * as actions from './activity.actions';
 import { ApiService } from '../../../core/api/api.service';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { ActivityModel } from '../models/activity.model';
+import { Observable } from 'rxjs/Observable';
+import { Action } from '@ngrx/store';
+import { ActivityService } from '../services/activity.service';
 
 @Injectable()
 export class ActivityEffects {
 
 	constructor(private actions$: Actions,
-							private apiService: ApiService) {}
+							private activityService: ActivityService) {}
 
 	@Effect()
-	create$ = this.actions$.ofType(actions.CREATE).pipe(
-    switchMap(
-      () => this.apiService.addActivity(94, new ActivityModel('VDS', null, null))
-    )
+  create$: Observable<Action> = this.actions$.ofType(actions.CREATE)
+    .map(action => {
+      console.log(action);
+      return new actions.CreateSuccess();
+    }
   );
+    
 
   @Effect()
-	delete$ = this.actions$.ofType(actions.DELETE).pipe(
-    switchMap(
-      () => this.apiService.deleteActivity(5)
-    )
+  delete$: Observable<Action> = this.actions$.ofType(actions.DELETE)
+    .map(action => {
+      console.log(action);
+      return new actions.DeleteSuccess();
+    }
   );
 }
