@@ -41,33 +41,29 @@ export class ActivityAddComponent implements OnInit {
    */
   addActivity() {
     const form = this.activityForm.value;
-    const activity = new ActivityModel(
-      form.name,
-      form.startDate,
-      form.endDate
-    );
+    const activity = {
+        programId: this.programId,
+        name: form.name,
+        startDate: form.startDate,
+        endDate: form.endDate
+    };
 
     // Should dispatch create event here
-    this.store.dispatch(new actions.Create({
-      programId: this.programId,
-      name: form.name,
-      startDate: form.startDate,
-      endDate: form.endDate
-    }));
+    
+    // this.store.dispatch(new actions.Create(activity));
 
-    // this.activityService.add(
-    //   this.programId,
-    //   activity
-    // ).then(
-    //   success => {
-    //     this.message = `Success! ${form.name} was created`;
-    //     this.initForm();
-    //     setTimeout(() => this.message = undefined, 1000);
-    //   },
-    //   error => {
-    //     this.message = `Error! ${form.name} was not created`;
-    //   }
-    // );
+    this.activityService.add(
+      activity
+    ).then(
+      success => {
+        this.message = `Success! ${form.name} was created`;
+        this.initForm();
+        setTimeout(() => this.message = undefined, 1000);
+      },
+      error => {
+        this.message = `Error! ${form.name} was not created`;
+      }
+    );
   }
 
   errorClass(controls) {

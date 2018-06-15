@@ -4,6 +4,7 @@ import { ActivityModel } from '../../models/activity.model';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/activity.reducer';
 import * as actions from '../../store/activity.actions';
+import * as programActions from '../../../program/store/program.actions';
 
 @Component({
   selector: 'app-activity-list-item',
@@ -25,5 +26,6 @@ export class ActivityListItemComponent implements OnInit {
     //   id: this.activity.id
     // }));
     this.activityService.delete(this.activity.id);
+    this.store.dispatch(new programActions.LoadList());
   }
 }
